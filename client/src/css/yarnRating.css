@@ -1,0 +1,19 @@
+.yarn-container {
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  width: fit-content;
+  gap: 1rem;
+}
+
+.yarn {
+  -webkit-mask: url("../assets/icons/yarn.svg") no-repeat center;
+  mask: url("../assets/icons/yarn.svg") no-repeat center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #333;
+}
+
+.yarn-active {
+  background-color: #ff9900;
+}

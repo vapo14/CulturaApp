@@ -1,0 +1,75 @@
+.login-page-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #02426b;
+}
+
+@media screen and (min-width: 800px) {
+  .login-page-container {
+    padding-top: 8rem;
+  }
+}
+
+#cat-gif {
+  object-fit: cover;
+  width: 790;
+  height: 590;
+}
+
+.sign-up-span {
+  color: white;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: fit-content;
+  font-weight: bold;
+}
+
+#sign-up-link {
+  text-decoration: underline;
+  color: white;
+  margin: 1rem;
+}
+
+#sign-up-link:hover {
+  text-decoration: none;
+  color: #ff9900;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  background-color: #000b13a6;
+}
+
+.behind-modal {
+  filter: blur(4px);
+}
+
+.modal-content {
+  border-radius: 1rem;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.form-control:focus {
+  border-color: #ff9900;
+  box-shadow: 0 0 0 0.25rem #ff99004f;
+}
+
+.form-control.validated:focus {
+  border-color: rgb(0, 136, 0);
+  box-shadow: 0 0 0 0.25rem rgba(12, 194, 12, 0.342);
+}
+
+.form-control.not-validated:focus {
+}

@@ -1,0 +1,15 @@
+.post-main-form {
+  margin-top: 5rem;
+}
+
+.post-review-textarea {
+  height: 20rem;
+}
+
+.post-error-toast {
+  width: 20rem;
+  position: absolute;
+  margin-left: 0;
+  left: 4rem;
+  bottom: 2rem;
+}
