@@ -12,7 +12,7 @@ import {
   Form,
   Toast,
 } from "react-bootstrap";
-import catGIF from "../assets/landing/cat.gif";
+import callOut from "../assets/landing/call-out.png";
 import mainLogo from "../assets/landing/text.png";
 import SignIn from "./SignIn";
 
@@ -48,13 +48,18 @@ export default function LogIn() {
     <div className="login-page-container">
       <Container className={LoginModal || SignUpModal ? "behind-modal" : ""}>
         <Row>
-          <Col md={6} style={{ marginBottom: "4rem" }}>
-            <Image fluid src={mainLogo} alt="" id="main-logo-landing" />
+          <Col md={6} style={{ padding: "4rem" }}>
+            <h1 id="main-app-title">Expresa-Tec</h1>
+            <p style={{fontFamily: "Lora"}}>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+              Obcaecati sequi beatae dolore possimus ea culpa harum voluptate nulla? 
+              Magni dolorem eum velit, voluptatibus doloribus provident impedit id nemo veniam. 
+              Architecto.
+            </p>
             <div>
               <span className="sign-up-span">
                 <Button
                   className="main-button"
-                  style={{ marginLeft: "1rem" }}
                   onClick={() => setLoginModal(true)}
                 >
                   Log In
@@ -67,7 +72,7 @@ export default function LogIn() {
             </div>
           </Col>
           <Col md={6}>
-            <Image fluid src={catGIF} alt="" id="cat-gif" />
+            <Image fluid src={callOut} alt="" id="call-out" />
           </Col>
         </Row>
       </Container>

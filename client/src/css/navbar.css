@@ -1,8 +1,14 @@
 .navbar {
-  background-color: #02426b;
+  background-color: #fceade;
   -webkit-box-shadow: 0px 0px 48px -21px rgba(0, 2, 66, 1);
   -moz-box-shadow: 0px 0px 48px -21px rgba(0, 2, 66, 1);
   box-shadow: 0px 0px 48px -21px rgba(0, 2, 66, 1);
+}
+
+#navbar-main-link{
+  font-family: 'Lora', serif;
+  color: #333;
+  font-weight: bold;
 }
 
 #main-icon {

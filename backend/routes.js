@@ -8,8 +8,7 @@ const checkNotAuthenticated = require("./middleware/checkNotAuthenticated");
 
 // import necessary controllers
 const userController = require("./controllers/userController");
-const reviewController = require("./controllers/reviewController");
-const searchController = require("./controllers/searchController");
+const topicController = require("./controllers/topicController");
 
 router.get("/", checkAuthenticated, (req, res) => {
   return res.send("hi");
@@ -35,30 +34,27 @@ router.post(
 
 // ======= REVIEWS ROUTES =======
 
-router.get("/reviews", checkAuthenticated, reviewController.getAllReviews);
-router.post("/reviews/upload", checkAuthenticated, reviewController.postReview);
-router.get("/review", checkAuthenticated, reviewController.getReviewById);
+router.get("/reviews", checkAuthenticated, topicController.getAllReviews);
+router.post("/reviews/upload", checkAuthenticated, topicController.postReview);
+router.get("/review", checkAuthenticated, topicController.getReviewById);
 router.get(
   "/reviews/user",
   checkAuthenticated,
-  reviewController.getReviewsByUserId
+  topicController.getReviewsByUserId
 );
 router.get(
   "/reviews/filter",
   checkAuthenticated,
-  reviewController.getReviewsByMovieId
+  topicController.getReviewsByMovieId
 );
 router.get(
   "/reviews/liked",
   checkAuthenticated,
-  reviewController.getReviewsLikedByUser
+  topicController.getReviewsLikedByUser
 );
 
-router.put("/review/like", checkAuthenticated, reviewController.likeReview);
+router.put("/review/like", checkAuthenticated, topicController.likeReview);
 
-router.delete("/review/:id", checkAuthenticated, reviewController.deleteReview);
-
-// ======= SEARCH ROUTES =======
-router.get("/search", checkAuthenticated, searchController.searchMovie);
+router.delete("/review/:id", checkAuthenticated, topicController.deleteReview);
 
 module.exports = router;

@@ -30,6 +30,12 @@ a:hover {
   padding-top: 5rem;
 }
 
+#main-app-title{
+  font-family: 'Lora', serif;
+  font-weight: bold;
+  font-size: 6rem;
+}
+
 .btn-secondary {
   color: white;
   font-weight: bold;
@@ -40,8 +46,8 @@ a:hover {
 }
 
 .main-button {
-  background-color: #ff9900;
-  color: white;
+  background-color: #ff8a5b;
+  color: #333;
   font-weight: bold;
   border: none;
   border-radius: 0.5rem;
@@ -50,8 +56,8 @@ a:hover {
 }
 
 .main-button:hover {
-  background-color: #be7507;
-  border-color: #02426b;
+  background-color: #e47448;
+  border-color: #ac4f2b;
 }
 
 .main-button:active:focus {
@@ -59,13 +65,13 @@ a:hover {
 }
 
 .main-button:focus {
-  background-color: #ff9900;
-  border-color: #ff9900;
-  box-shadow: 0 0 0 0.25rem #ff99004f;
+  background-color: #ff8a5b;
+  border-color: #ff8a5b;
+  box-shadow: 0 0 0 0.25rem #ff8a5b4f;
 }
 
 .main-button:active {
-  background-color: #ff9900;
+  background-color: #ff8a5b;
   border-color: #02426b;
 }
 
@@ -84,7 +90,7 @@ a:hover {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ff9900;
+  background: #ff8a5b;
   border-radius: 10px;
 }
 
@@ -166,18 +172,18 @@ a:hover {
 }
 
 .form-check-input:focus {
-  border-color: #ff9900;
-  box-shadow: 0 0 0 0.25rem #ff99004f;
+  border-color: #ff8a5b;
+  box-shadow: 0 0 0 0.25rem #ff8a5b4f;
 }
 
 .form-check-input:checked {
-  background-color: #ff9900;
-  border-color: #ff9900;
+  background-color: #ff8a5b;
+  border-color: #ff8a5b;
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
-  background-color: #ff9900;
+  background-color: #ff8a5b;
 }
 
 .main-delete-button {
@@ -202,6 +208,6 @@ a:hover {
 }
 
 .section-title {
-  color: #ff9900;
+  color: #ff8a5b;
   text-shadow: 0px 0px 8px rgba(255, 153, 0, 0.66);
 }

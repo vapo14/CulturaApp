@@ -4,7 +4,6 @@ import useAuth from "../hooks/useAuth";
 import "../css/navbar.css";
 import addButton from "../assets/icons/add-icon.svg";
 import savedIcon from "../assets/icons/saved-icon.svg";
-import mainIcon from "../assets/imgs/filmur_logo.png";
 import {
   Navbar,
   Container,
@@ -28,7 +27,7 @@ export default function NavBar() {
       <Container>
         <Navbar.Brand>
           <Link to="/home">
-            <img src={mainIcon} alt="" id="main-icon" />
+            <h3 id="navbar-main-link">Expresa-Tec</h3>
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

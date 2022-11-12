@@ -1,7 +1,7 @@
 .login-page-container {
   width: 100%;
   min-height: 100vh;
-  background-color: #02426b;
+  background-color: #fceade;
 }
 
 @media screen and (min-width: 800px) {
@@ -17,7 +17,7 @@
 }
 
 .sign-up-span {
-  color: white;
+  color: #333;
   font-size: 18px;
   display: flex;
   flex-direction: row;
@@ -30,13 +30,13 @@
 
 #sign-up-link {
   text-decoration: underline;
-  color: white;
+  color: #333;
   margin: 1rem;
 }
 
 #sign-up-link:hover {
   text-decoration: none;
-  color: #ff9900;
+  color: #ff8a5b;
   margin: 1rem;
   cursor: pointer;
 }
