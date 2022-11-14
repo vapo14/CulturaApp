@@ -7,7 +7,7 @@ import YarnRating from "./YarnRating";
 import "../css/review.css";
 import xIcon from "../assets/icons/x-icon.svg";
 
-export default function Review() {
+export default function Topic() {
   const { id } = useParams();
 
   let getReviewById = async (id) => {

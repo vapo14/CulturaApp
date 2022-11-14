@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import PostReview from "./PostReview";
-import Review from "./Review";
+import Topic from "./Topic";
 import Home from "./Home";
 import SavedReviews from "./SavedReviews";
 import UserPosts from "./UserPosts";
@@ -15,7 +15,7 @@ export default function MainContainer() {
         <Route path="/home" element={<Home></Home>}></Route>
         <Route path="/post" element={<PostReview></PostReview>}></Route>
         <Route path="/saved" element={<SavedReviews></SavedReviews>}></Route>
-        <Route path="/review/:id" element={<Review></Review>}></Route>
+        <Route path="/topic/:id" element={<Topic></Topic>}></Route>
         <Route path="/user/posts" element={<UserPosts></UserPosts>}></Route>
       </Routes>
     </div>

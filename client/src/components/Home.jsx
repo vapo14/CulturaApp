@@ -20,8 +20,8 @@ import useAuth from "../hooks/useAuth";
 import sleepCat from "../assets/imgs/sleeping_cat.png";
 
 export default function Home() {
-  const { isLoading, isError, error, data } = useQuery("reviews", async () => {
-    const data = await axiosInstance.get("/reviews");
+  const { isLoading, isError, error, data } = useQuery("topics", async () => {
+    const data = await axiosInstance.get("/topics");
     return data.data;
   });
   const { UserData } = useAuth();
@@ -67,7 +67,6 @@ export default function Home() {
       </div>
     );
   }
-
   return (
     <div>
       <Container className="review-container">
@@ -76,30 +75,19 @@ export default function Home() {
             {data.map((review) => {
               return (
                 <Card key={review._id} className="grow">
-                  <Card.Img variant="top" src={review.imgURI} />
                   <Card.Body>
                     <div className="card-body-custom-container">
                       <div className="card-left-side">
                         <Card.Title>
                           {review.title}
-                          {review.isSpoiler ? (
-                            <Image
-                              src={spoiler_alert}
-                              fluid
-                              className="spoiler-alert-image"
-                            />
-                          ) : (
-                            ""
-                          )}
                         </Card.Title>
-                        <YarnRating rating={review.yarnRating} />
-                        <footer className="blockquote-footer">
-                          {review.ownerUsername}
+                        <footer className="small" style={{color: "#333333a1"}}>
+                          Published on: {new Date(review.published).toDateString()}
                         </footer>
-                        <Card.Text>
+                        <Card.Text style={{margin: "2rem 0 2rem"}}>
                           {review.content.slice(0, 100) + " ..."}
                         </Card.Text>
-                        <Link to={`/review/${review._id}`}>
+                        <Link to={`/topic/${review._id}`}>
                           <Button className="main-button" id="read-more-button">
                             Read more
                           </Button>

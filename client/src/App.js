@@ -25,11 +25,11 @@ function App() {
         <Route
           path="*"
           element={
-            //<RequireAuth>
+            <RequireAuth>
               <QueryClientProvider client={queryClient}>
                 <MainContainer></MainContainer>
               </QueryClientProvider>
-            //</RequireAuth>
+            </RequireAuth>
           }
         />
       </Routes>

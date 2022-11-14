@@ -33,13 +33,6 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <Link to="/post">
-              <Image className="menu-icons" src={addButton} alt="" fluid />
-            </Link>
-            <Link to="/saved">
-              <Image className="menu-icons" src={savedIcon} alt="" fluid />
-            </Link>
-
             <NavDropdown
               title={
                 UserData.username.length > 10
