@@ -34,27 +34,15 @@ router.post(
 
 // ======= REVIEWS ROUTES =======
 
-router.get("/reviews", checkAuthenticated, topicController.getAllReviews);
-router.post("/reviews/upload", checkAuthenticated, topicController.postReview);
-router.get("/review", checkAuthenticated, topicController.getReviewById);
+router.get("/topics", checkAuthenticated, topicController.getAllTopics);
+router.post("/topics/upload", checkAuthenticated, topicController.postTopic);
+router.get("/topic", checkAuthenticated, topicController.getTopicById);
 router.get(
-  "/reviews/user",
+  "/topics/liked",
   checkAuthenticated,
-  topicController.getReviewsByUserId
-);
-router.get(
-  "/reviews/filter",
-  checkAuthenticated,
-  topicController.getReviewsByMovieId
-);
-router.get(
-  "/reviews/liked",
-  checkAuthenticated,
-  topicController.getReviewsLikedByUser
+  topicController.getTopicsLikedByUser
 );
 
-router.put("/review/like", checkAuthenticated, topicController.likeReview);
-
-router.delete("/review/:id", checkAuthenticated, topicController.deleteReview);
+router.put("/topic/like", checkAuthenticated, topicController.likeTopic);
 
 module.exports = router;

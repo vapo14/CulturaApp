@@ -22,6 +22,10 @@ const topicSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
+    commentIds: {
+      type: [String],
+      required: true,
+    },
     published: {
       type: Date,
       required: true,

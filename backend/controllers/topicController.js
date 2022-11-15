@@ -1,64 +1,40 @@
-const reviewModel = require("../models/reviewModel");
+const topicModel = require("../models/topicModel");
 
 /**
- * get all reviews and sort them by date published in ascending order
+ * get all topics and sort them by date published in ascending order
  * @param {*} req
  * @param {*} res
  */
-const getAllReviews = async (req, res) => {
-  res.json(await reviewModel.find().sort({ published: -1 }));
+const getAllTopics = async (req, res) => {
+  res.json(await topicModel.find().sort({ published: -1 }));
 };
 
 /**
- * Get all reviews by a given user ID, sorted by date published
+ * Get topic by topic id.
  * @param {*} req
  * @param {*} res
  */
-const getReviewsByUserId = async (req, res) => {
-  res.json(
-    await reviewModel.find({ owner: req.user._id }).sort({ published: -1 })
-  );
+const getTopicById = async (req, res) => {
+  res.json(await topicModel.findOne({ _id: req.query.topicId }));
 };
 
 /**
- * Get review by review id.
+ * Get topics that the user has liked/saved
  * @param {*} req
  * @param {*} res
  */
-const getReviewById = async (req, res) => {
-  res.json(await reviewModel.findOne({ _id: req.query.reviewId }));
+const getTopicsLikedByUser = async (req, res) => {
+  res.json(await topicModel.find({ userLikes: req.user._id }));
 };
 
 /**
- * Get reviews that the user has liked/saved
+ * Post a new topic using the request body data.
  * @param {*} req
  * @param {*} res
  */
-const getReviewsLikedByUser = async (req, res) => {
-  res.json(await reviewModel.find({ userLikes: req.user._id }));
-};
-
-/**
- * Get review by movie ID.
- * @param {*} req
- * @param {*} res
- */
-const getReviewsByMovieId = async (req, res) => {
+const postTopic = async (req, res) => {
   try {
-    res.json(await reviewModel.find({ movieId: req.query.q }));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-/**
- * Post a new review using the request body data.
- * @param {*} req
- * @param {*} res
- */
-const postReview = async (req, res) => {
-  try {
-    let newPost = new reviewModel({
+    let newPost = new topicModel({
       isSpoiler: req.body.isSpoiler,
       movieId: req.body.movieId,
       owner: req.user._id,
@@ -83,43 +59,43 @@ const postReview = async (req, res) => {
   }
 };
 
-const likeReview = async (req, res) => {
+const likeTopic = async (req, res) => {
   let reviewId = req.query.reviewId;
   // determine if the user has already liked the review
-  let hasLiked = await reviewModel.findOne({
+  let hasLiked = await topicModel.findOne({
     _id: reviewId,
     userLikes: req.user._id,
   });
   if (hasLiked) {
     try {
-      await reviewModel.findByIdAndUpdate(reviewId, {
+      await topicModel.findByIdAndUpdate(reviewId, {
         $pull: { userLikes: req.user._id },
         $inc: { likeCount: -1 },
       });
       return res.status(200).json({ status: "UNLIKED_REVIEW" });
     } catch (err) {
-      console.log(err);
+      console.error(err);
       res.json(err);
       return;
     }
   } else {
     try {
-      await reviewModel.findByIdAndUpdate(reviewId, {
+      await topicModel.findByIdAndUpdate(reviewId, {
         $push: { userLikes: req.user._id },
         $inc: { likeCount: 1 },
       });
       return res.status(200).json({ status: "LIKED_REVIEW" });
     } catch (err) {
-      console.log(err);
+      console.error(err);
       res.json(err);
       return;
     }
   }
 };
 
-const deleteReview = async (req, res) => {
+const deleteTopic = async (req, res) => {
   try {
-    await reviewModel.findByIdAndDelete(req.params.id);
+    await topicModel.findByIdAndDelete(req.params.id);
     res.json({
       status: "success",
       message: "Successfully deleted your review!",
@@ -133,12 +109,10 @@ const deleteReview = async (req, res) => {
 };
 
 module.exports = {
-  getAllReviews,
-  postReview,
-  getReviewById,
-  getReviewsByUserId,
-  getReviewsByMovieId,
-  likeReview,
-  getReviewsLikedByUser,
-  deleteReview,
+  postTopic,
+  deleteTopic,
+  getTopicsLikedByUser,
+  getAllTopics,
+  getTopicById,
+  likeTopic
 };
