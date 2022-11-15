@@ -6,17 +6,18 @@ import { Container, Row, Col, Spinner, Alert, Card } from "react-bootstrap";
 import YarnRating from "./YarnRating";
 import "../css/review.css";
 import xIcon from "../assets/icons/x-icon.svg";
+import CreateComment from "./CreateComment";
 
 export default function Topic() {
   const { id } = useParams();
 
-  let getReviewById = async (id) => {
-    let data = await axiosInstance.get("/review", { params: { reviewId: id } });
+  let getTopicById = async (id) => {
+    let data = await axiosInstance.get("/topic", { params: { topicId: id } });
     return data.data;
   };
 
-  const review = useQuery("review", () => getReviewById(id));
-  if (review.isLoading) {
+  const topic = useQuery("topic", () => getTopicById(id));
+  if (topic.isLoading) {
     return (
       <div>
         <Container style={{ marginTop: "20rem" }}>
@@ -26,7 +27,7 @@ export default function Topic() {
                 style={{
                   width: "8rem",
                   height: "8rem",
-                  backgroundColor: "#FF9900",
+                  backgroundColor: "#ff8a5b",
                 }}
                 animation="grow"
               />
@@ -37,7 +38,7 @@ export default function Topic() {
     );
   }
 
-  if (review.isError) {
+  if (topic.isError) {
     return (
       <div>
         <Container style={{ marginTop: "20rem" }}>
@@ -45,7 +46,7 @@ export default function Topic() {
             <Col>
               <Alert variant="danger">
                 <Alert.Heading>An error was encountered</Alert.Heading>
-                <p>{review.error.message}</p>
+                <p>{topic.error.message}</p>
                 <hr />
                 <p className="mb-0">
                   Make sure you have an active internet connection, if the
@@ -64,26 +65,25 @@ export default function Topic() {
       <Container>
         <Row>
           <Col md={12}>
-            <Card key={review.data._id} className="big-review-card">
+            <Card key={topic.data._id} className="big-review-card">
               <Link to="/home">
                 {" "}
                 <div className="main-exit-button">
                   <img src={xIcon} alt="close button" style={{}} />
                 </div>
               </Link>
-
               <Card.Img
                 variant="top"
-                src={review.data.imgURI}
+                src={topic.data.imgURI}
                 className="big-review-img"
               />
               <Card.Body>
-                <Card.Title>{review.data.title}</Card.Title>
-                <YarnRating rating={review.data.yarnRating} />
+                <Card.Title>{topic.data.title}</Card.Title>
                 <footer className="blockquote-footer">
-                  {review.data.ownerUsername}
+                  {new Date(topic.data.published).toDateString()}
                 </footer>
-                <Card.Text>{review.data.content}</Card.Text>
+                <Card.Text>{topic.data.content}</Card.Text>
+                <CreateComment></CreateComment>
               </Card.Body>
             </Card>
           </Col>

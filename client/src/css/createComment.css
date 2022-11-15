@@ -1,0 +1,15 @@
+.create-comment-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.create-comment-textarea {
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+}
+
+.create-comment-container > .main-button {
+  margin: 0.5rem;
+  max-height: 3.5rem;
+}
