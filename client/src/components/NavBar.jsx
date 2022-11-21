@@ -41,15 +41,8 @@ export default function NavBar() {
               }
               id="collasible-nav-dropdown"
             >
-              <Link to="/user/posts" className="dropdown-item">
-                My Posts
-              </Link>
-              <NavDropdown.Item href="" disabled>
-                Settings <Badge bg="secondary">Coming Soon</Badge>
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
               <NavDropdown.Item href="" onClick={handleLogout}>
-                LogOut
+                Cerrar Sesión
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

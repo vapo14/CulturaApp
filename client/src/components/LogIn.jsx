@@ -50,11 +50,10 @@ export default function LogIn() {
         <Row>
           <Col md={6} style={{ padding: "4rem" }}>
             <h1 id="main-app-title">Expresa-Tec</h1>
-            <p style={{fontFamily: "Lora"}}>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-              Obcaecati sequi beatae dolore possimus ea culpa harum voluptate nulla? 
-              Magni dolorem eum velit, voluptatibus doloribus provident impedit id nemo veniam. 
-              Architecto.
+            <p style={{ fontFamily: "Lora" }}>
+              Un foro de discusión realmente anónimo para la discusión de temas
+              de interés y promover la cultura de la legalidad en la comunidad
+              del Tec de Monterrey campus Chihuahua.
             </p>
             <div>
               <span className="sign-up-span">
@@ -62,11 +61,11 @@ export default function LogIn() {
                   className="main-button"
                   onClick={() => setLoginModal(true)}
                 >
-                  Log In
+                  Inicia Sesión
                 </Button>
-                or
+                o
                 <span id="sign-up-link" onClick={() => setSignUpModal(true)}>
-                  Sign Up
+                  Crea tu cuenta
                 </span>
               </span>
             </div>
@@ -92,7 +91,7 @@ export default function LogIn() {
               marginRight: "auto",
             }}
           >
-            Welcome
+            Bienvenido
           </h3>
           <Toast
             onClose={() => setInvalidCredentialsAlert(false)}
@@ -111,7 +110,9 @@ export default function LogIn() {
             >
               <strong className="me-auto">Oops!</strong>
             </Toast.Header>
-            <Toast.Body>Wrong username or password, try again.</Toast.Body>
+            <Toast.Body>
+              Contraseña o usuario incorrecto, intenta de nuevo.
+            </Toast.Body>
           </Toast>
           <Container>
             <Form
@@ -121,24 +122,24 @@ export default function LogIn() {
               }}
             >
               <Form.Group className="mb-3" controlId="loginUsername">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Nombre de usuario</Form.Label>
                 <Form.Control
                   type="username"
-                  placeholder="Enter username"
+                  placeholder="Ingresa tu usuario"
                   onChange={(e) => setUsername(e.target.value)}
                   required={true}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="loginPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Contraseña</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder="Contraseña"
                   onChange={(e) => setPassword(e.target.value)}
                   required={true}
                 />
                 <Form.Text className="text-muted">
-                  Your password is always encrypted :)
+                  Tu contraseña siempre es encriptada :)
                 </Form.Text>
               </Form.Group>
               <Button
@@ -146,7 +147,7 @@ export default function LogIn() {
                 type="submit"
                 disabled={EnableLogInButton}
               >
-                Log In
+                Iniciar Sesión
               </Button>
             </Form>
           </Container>
@@ -168,7 +169,7 @@ export default function LogIn() {
               marginRight: "auto",
             }}
           >
-            Create your account
+            Crea tu cuenta
           </h3>
           <SignIn setSignUpModal={setSignUpModal} />
         </Modal.Body>

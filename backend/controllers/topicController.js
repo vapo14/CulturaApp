@@ -51,11 +51,11 @@ const postTopic = async (req, res) => {
     });
 
     newPost.save((err) => {
-      if (err) res.status(500).send(`Error creating post, ${err}`);
-      return res.status(200).json({ status: "POST_SAVED" });
+      if (err) return res.status(500).send(`Error creating post, ${err}`);
+      return res.status(201).json({ status: "POST_SAVED" });
     });
   } catch (error) {
-    res.status(500).send(`Error creating post, ${error}`);
+    return res.status(500).send(`Error creating post, ${error}`);
   }
 };
 
@@ -114,5 +114,5 @@ module.exports = {
   getTopicsLikedByUser,
   getAllTopics,
   getTopicById,
-  likeTopic
+  likeTopic,
 };

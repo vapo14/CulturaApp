@@ -1,0 +1,12 @@
+.commentCard {
+  margin: 1rem 0;
+  padding: 1rem;
+  width: 100%;
+  border: solid #ff8a5b;
+  box-shadow: none;
+  border-width: 0 0 1px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  word-wrap: break-word;
+}

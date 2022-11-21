@@ -16,7 +16,6 @@ export default function MainContainer() {
         <Route path="/post" element={<PostReview></PostReview>}></Route>
         <Route path="/saved" element={<SavedReviews></SavedReviews>}></Route>
         <Route path="/topic/:id" element={<Topic></Topic>}></Route>
-        <Route path="/user/posts" element={<UserPosts></UserPosts>}></Route>
       </Routes>
     </div>
   );

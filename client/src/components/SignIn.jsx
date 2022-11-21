@@ -108,9 +108,9 @@ export default function SignIn(props) {
             color: "white",
           }}
         >
-          <strong className="me-auto">Hurray!</strong>
+          <strong className="me-auto">Genial!</strong>
         </Toast.Header>
-        <Toast.Body>User Created! You can now login to Filmur 😁</Toast.Body>
+        <Toast.Body>Usuario creado! Ya puedes iniciar sesión 😁</Toast.Body>
       </Toast>
       <Form
         style={{ textAlign: "left" }}
@@ -119,33 +119,34 @@ export default function SignIn(props) {
         }}
       >
         <Form.Group className="mb-3" controlId="signUpUsername">
-          <Form.Label>Username</Form.Label>
+          <Form.Label>Nombre de Usuario</Form.Label>
           <Form.Control
             type="username"
             name="Username"
-            placeholder="Enter username"
+            placeholder="Ingresa tu usuario"
             required
             onChange={(e) => handleChange(e)}
           />
           <Form.Text className="text-muted">
-            A good username may look like this: my_user3516
+            Recuerda que para ser realmente anónimo no debes utilizar datos
+            personales.
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="signUpPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Contraseña</Form.Label>
           <Form.Control
             type="password"
             name="Password"
-            placeholder="Password"
+            placeholder="Contraseña"
             required
             onChange={(e) => handleChange(e)}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="signUpConfirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>Confirma Contraseña</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             name="ConfirmPassword"
             required
             onChange={(e) => handleChange(e)}
@@ -157,7 +158,7 @@ export default function SignIn(props) {
           type="submit"
           disabled={EnableSignInButton}
         >
-          Sign Up
+          Crear Cuenta
         </Button>
       </Form>
     </Container>

@@ -1,23 +1,20 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
 import axiosInstance from "../api/axiosInstance";
 import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import { Container, Row, Col, Spinner, Alert, Card } from "react-bootstrap";
-import "../css/review.css";
-import xIcon from "../assets/icons/x-icon.svg";
-import CreateComment from "./CreateComment";
-import CommentList from "./CommentList";
+import "../css/commentList.css";
 
-export default function Topic() {
+export default function CommentList() {
   const { id } = useParams();
-
-  let getTopicById = async (id) => {
-    let data = await axiosInstance.get("/topic", { params: { topicId: id } });
+  let getCommentsByTopicId = async (id) => {
+    let data = await axiosInstance.get("/comments", { params: { id } });
     return data.data;
   };
 
-  const topic = useQuery("topic", () => getTopicById(id));
-  if (topic.isLoading) {
+  const comments = useQuery("comments", () => getCommentsByTopicId(id));
+
+  if (comments.isLoading) {
     return (
       <div>
         <Container style={{ marginTop: "20rem" }}>
@@ -38,7 +35,7 @@ export default function Topic() {
     );
   }
 
-  if (topic.isError) {
+  if (comments.isError) {
     return (
       <div>
         <Container style={{ marginTop: "20rem" }}>
@@ -46,7 +43,7 @@ export default function Topic() {
             <Col>
               <Alert variant="danger">
                 <Alert.Heading>An error was encountered</Alert.Heading>
-                <p>{topic.error.message}</p>
+                <p>{comments.error.message}</p>
                 <hr />
                 <p className="mb-0">
                   Make sure you have an active internet connection, if the
@@ -60,34 +57,30 @@ export default function Topic() {
     );
   }
 
+  if (comments.data.length === 0) {
+    return (
+      <Alert key={"warning"} variant={"warning"}>
+        Este tema aún no tiene comentarios. Sé el primero en dar tu opinión!
+      </Alert>
+    );
+  }
+
   return (
     <div>
       <Container>
         <Row>
-          <Col md={12}>
-            <Card key={topic.data._id} className="big-review-card">
-              <Link to="/home">
-                {" "}
-                <div className="main-exit-button">
-                  <img src={xIcon} alt="close button" style={{}} />
-                </div>
-              </Link>
-              <Card.Img
-                variant="top"
-                src={topic.data.imgURI}
-                className="big-review-img"
-              />
-              <Card.Body>
-                <Card.Title>{topic.data.title}</Card.Title>
+          {comments.data.map((comment) => {
+            return (
+              <Card key={comment._id} className="commentCard">
+                <Card.Text>{comment.content}</Card.Text>
                 <footer className="blockquote-footer">
-                  {new Date(topic.data.published).toDateString()}
+                  {comment.createdByUsername}
+                  <br />
+                  {new Date(comment.postedDate).toDateString()}
                 </footer>
-                <Card.Text>{topic.data.content}</Card.Text>
-                <CreateComment></CreateComment>
-                <CommentList></CommentList>
-              </Card.Body>
-            </Card>
-          </Col>
+              </Card>
+            );
+          })}
         </Row>
       </Container>
     </div>

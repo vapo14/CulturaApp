@@ -9,6 +9,7 @@ const checkNotAuthenticated = require("./middleware/checkNotAuthenticated");
 // import necessary controllers
 const userController = require("./controllers/userController");
 const topicController = require("./controllers/topicController");
+const commentController = require("./controllers/commentController");
 
 router.get("/", checkAuthenticated, (req, res) => {
   return res.send("hi");
@@ -32,7 +33,7 @@ router.post(
   userController.validateUser
 );
 
-// ======= REVIEWS ROUTES =======
+// ======= Topic ROUTES =======
 
 router.get("/topics", checkAuthenticated, topicController.getAllTopics);
 router.post("/topics/upload", checkAuthenticated, topicController.postTopic);
@@ -44,5 +45,14 @@ router.get(
 );
 
 router.put("/topic/like", checkAuthenticated, topicController.likeTopic);
+
+// ======== Comment ROUTES ======
+
+router.post("/comments", checkAuthenticated, commentController.postComment);
+router.get(
+  "/comments",
+  checkAuthenticated,
+  commentController.getTopicCommentsByTopicId
+);
 
 module.exports = router;

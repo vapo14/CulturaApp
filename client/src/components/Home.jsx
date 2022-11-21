@@ -78,18 +78,19 @@ export default function Home() {
                   <Card.Body>
                     <div className="card-body-custom-container">
                       <div className="card-left-side">
-                        <Card.Title>
-                          {review.title}
-                        </Card.Title>
-                        <footer className="small" style={{color: "#333333a1"}}>
-                          Published on: {new Date(review.published).toDateString()}
+                        <Card.Title>{review.title}</Card.Title>
+                        <footer
+                          className="small"
+                          style={{ color: "#333333a1" }}
+                        >
+                          Publicado: {new Date(review.published).toDateString()}
                         </footer>
-                        <Card.Text style={{margin: "2rem 0 2rem"}}>
+                        <Card.Text style={{ margin: "2rem 0 2rem" }}>
                           {review.content.slice(0, 100) + " ..."}
                         </Card.Text>
                         <Link to={`/topic/${review._id}`}>
                           <Button className="main-button" id="read-more-button">
-                            Read more
+                            Leer más
                           </Button>
                         </Link>
                       </div>

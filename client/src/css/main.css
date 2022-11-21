@@ -30,10 +30,16 @@ a:hover {
   padding-top: 5rem;
 }
 
-#main-app-title{
-  font-family: 'Lora', serif;
+#main-app-title {
+  font-family: "Lora", serif;
   font-weight: bold;
-  font-size: 6rem;
+  font-size: xx-large;
+}
+
+@media screen and (min-width: 800px) {
+  #main-app-title {
+    font-size: 6rem;
+  }
 }
 
 .btn-secondary {

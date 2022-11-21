@@ -8,7 +8,7 @@ export default function LikeAndSave(props) {
   const [LikeCount, setLikeCount] = useState(props.likeCount);
 
   const likeReview = useMutation((reviewId) => {
-    return axiosInstance.put("/review/like", null, { params: { reviewId } });
+    return axiosInstance.put("/topic/like", null, { params: { reviewId } });
   });
 
   const handleLikeButton = () => {
