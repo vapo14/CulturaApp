@@ -54,5 +54,6 @@ router.get(
   checkAuthenticated,
   commentController.getTopicCommentsByTopicId
 );
+router.delete("/comments", checkAuthenticated, commentController.deleteComment);
 
 module.exports = router;

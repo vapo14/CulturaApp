@@ -1,18 +1,53 @@
 import React from "react";
 import axiosInstance from "../api/axiosInstance";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Spinner, Alert, Card } from "react-bootstrap";
+import { useState } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Spinner,
+  Alert,
+  Card,
+  Button,
+  Toast,
+} from "react-bootstrap";
+import useAuth from "../hooks/useAuth";
 import "../css/commentList.css";
+import { useQueryClient } from "react-query";
 
 export default function CommentList() {
+  const [DeleteButtonDisabled, setDeleteButtonDisabled] = useState(false);
+  const { UserData } = useAuth();
   const { id } = useParams();
+  const queryClient = useQueryClient();
   let getCommentsByTopicId = async (id) => {
     let data = await axiosInstance.get("/comments", { params: { id } });
     return data.data;
   };
 
   const comments = useQuery("comments", () => getCommentsByTopicId(id));
+  const deleteCommentMutation = useMutation((commentId) => {
+    return axiosInstance.delete("/comments", {
+      params: {
+        commentId: commentId,
+        topicId: id,
+      },
+    });
+  });
+
+  const handleDelete = (commentId) => {
+    setDeleteButtonDisabled(true);
+    deleteCommentMutation.mutate(commentId);
+    setTimeout(() => {
+      setDeleteButtonDisabled(false);
+      queryClient.invalidateQueries({
+        queryKey: ["comments"],
+        refetchType: "active",
+      });
+    }, 1000);
+  };
 
   if (comments.isLoading) {
     return (
@@ -67,6 +102,28 @@ export default function CommentList() {
 
   return (
     <div>
+      <Toast
+        onClose={() => deleteCommentMutation.reset()}
+        show={deleteCommentMutation.isSuccess}
+        delay={4000}
+        className="main-success-toast"
+        style={{ position: "fixed", top: "4rem" }}
+        autohide
+      >
+        <Toast.Body>Tu comentario fue eliminado! 😁</Toast.Body>
+      </Toast>
+      <Toast
+        onClose={() => deleteCommentMutation.reset()}
+        show={deleteCommentMutation.isError}
+        delay={4000}
+        className="main-error-toast"
+        style={{ position: "fixed", top: "4rem" }}
+        autohide
+      >
+        <Toast.Body>
+          Tu comentario no se pudo eliminar 😔. Intenta de nuevo.
+        </Toast.Body>
+      </Toast>
       <Container>
         <Row>
           {comments.data.map((comment) => {
@@ -76,7 +133,23 @@ export default function CommentList() {
                 <footer className="blockquote-footer">
                   {comment.createdByUsername}
                   <br />
-                  {new Date(comment.postedDate).toDateString()}
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    {new Date(comment.postedDate).toDateString()}
+                    {comment.createdById === UserData.userId ? (
+                      <Button
+                        className="main-button main-delete-button"
+                        style={{
+                          maxHeight: "3rem",
+                          maxWidth: "fit-content",
+                          marginTop: "1rem",
+                        }}
+                        onClick={() => handleDelete(comment._id)}
+                        disabled={DeleteButtonDisabled}
+                      >
+                        Eliminar
+                      </Button>
+                    ) : null}
+                  </div>
                 </footer>
               </Card>
             );

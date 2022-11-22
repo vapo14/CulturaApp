@@ -13,8 +13,6 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../css/reviews.css";
-import YarnRating from "./YarnRating";
-import spoiler_alert from "../assets/icons/spoiler_alert.png";
 import LikeAndSave from "./LikeAndSave";
 import useAuth from "../hooks/useAuth";
 import sleepCat from "../assets/imgs/sleeping_cat.png";
@@ -100,6 +98,15 @@ export default function Home() {
                           reviewId={review._id}
                           likeCount={review.likeCount}
                         />
+                        <div className="comment-container">
+                          <button className={"comment-button"}>
+                            <span className="comment-icon">
+                              <div className="heart-animation-1"></div>
+                              <div className="heart-animation-2"></div>
+                            </span>
+                            {review.commentCount}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </Card.Body>

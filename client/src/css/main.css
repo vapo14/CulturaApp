@@ -78,7 +78,13 @@ a:hover {
 
 .main-button:active {
   background-color: #ff8a5b;
-  border-color: #02426b;
+  border-color: #d46c42;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: #ff8a5b;
+  border-color: #d46c42;
 }
 
 /*==== SCROLL BAR =====*/
